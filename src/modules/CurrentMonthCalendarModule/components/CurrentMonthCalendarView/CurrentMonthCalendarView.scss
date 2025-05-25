@@ -1,0 +1,27 @@
+.CurrentMonthCalendarView {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &-Title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  &-DateCalendar {
+    .MuiPickersCalendarHeader-root {
+      margin-top: 0;
+    }
+
+    .MuiDayCalendar-weekContainer {
+      justify-content: space-around;
+    }
+
+    .MuiPickersDay-root {
+      width: 40px;
+      height: 40px;
+      margin: 0;
+    }
+  }
+}
