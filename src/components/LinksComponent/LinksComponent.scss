@@ -1,0 +1,19 @@
+.LinksComponent {
+  &-Card {
+    max-width: 290px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      cursor: pointer;
+
+      .LinksComponent-CardMedia {
+        filter: blur(0px);
+      }
+    }
+  }
+
+  &-CardMedia {
+    filter: blur(4.5px);
+    transition: filter 0.3s ease;
+  }
+}

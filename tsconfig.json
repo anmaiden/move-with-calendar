@@ -16,7 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "typeRoots": ["./node_modules/@types", "./src/images.d.ts"]
   },
   "include": ["src"]
 }

@@ -1,8 +1,9 @@
 import React from 'react';
 import './StartPage.scss';
 import { cn } from '@bem-react/classname';
-import { Button, Grid } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import WorkoutYouTubeModule from '../../modules/WorkoutYouTubeModule/components/WorkoutYouTubeModule';
 
 const cnStartPage = cn('StartPage');
 
@@ -13,27 +14,28 @@ const StartPage = () => {
     navigate('/current-month-calendar');
   };
 
-  const handleChooseByYourselfClick = () => {
-    navigate('/choose-by-yourself');
-  };
-
   return (
-    <Grid container spacing={2} className={cnStartPage()}>
-      <Grid size={3}>
-        <Button fullWidth variant="contained" onClick={handleCurrentMonthClick}>
-          Current Month Calendar Mode
-        </Button>
+    <>
+      <Grid container spacing={2} className={cnStartPage()}>
+        <Grid size={12}>
+          <Typography className={cnStartPage('TitleApp')}>
+            Move With App
+          </Typography>
+        </Grid>
+        <Grid size={2}>
+          <Button
+            fullWidth
+            variant="contained"
+            onClick={handleCurrentMonthClick}
+            className={cnStartPage('Button')}
+          >
+            Add workout to calendar
+          </Button>
+        </Grid>
       </Grid>
-      <Grid size={3}>
-        <Button
-          fullWidth
-          variant="contained"
-          onClick={handleChooseByYourselfClick}
-        >
-          Choose Month By Yourself Mode
-        </Button>
-      </Grid>
-    </Grid>
+
+      <WorkoutYouTubeModule />
+    </>
   );
 };
 export default StartPage;

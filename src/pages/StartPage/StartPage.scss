@@ -1,6 +1,13 @@
+@import '../../App.scss';
+
 .StartPage {
+  padding: 20px 50px;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
-  min-height: 90vh;
+
+  &-TitleApp {
+    text-align: end;
+    font-family: 'League Script', cursive !important;
+    font-size: 40px !important;
+  }
 }

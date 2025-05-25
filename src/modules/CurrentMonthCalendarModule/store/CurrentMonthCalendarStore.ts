@@ -13,6 +13,13 @@ class CalendarStore {
     makeAutoObservable(this);
   }
 
+  private saveToLocalStorage() {
+    localStorage.setItem(
+      'calendarData',
+      JSON.stringify(this.savedData.savedData)
+    );
+  }
+
   addOrUpdateNote(note: CurrentMonthCalendarModel) {
     const existingIndex = this.savedData.savedData.findIndex(
       (item) => item.date === note.date
@@ -24,15 +31,17 @@ class CalendarStore {
       this.savedData.savedData.push(note);
     }
 
-    localStorage.setItem(
-      'calendarData',
-      JSON.stringify(this.savedData.savedData)
-    );
+    this.saveToLocalStorage();
   }
 
-  getNoteByDate(date: string) {
-    return this.savedData.savedData.find((item) => item.date === date);
+  hasNoteForDate(dateString: string): boolean {
+    return this.savedData.savedData.some((item) => item.date === dateString);
+  }
+
+  getNoteByDate(dateString: string): CurrentMonthCalendarModel | undefined {
+    return this.savedData.savedData.find((item) => item.date === dateString);
   }
 }
 
-export default new CalendarStore();
+const calendarStore = new CalendarStore();
+export default calendarStore;

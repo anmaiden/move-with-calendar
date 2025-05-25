@@ -6,6 +6,8 @@ import { DateCalendar, LocalizationProvider } from '@mui/x-date-pickers';
 import { Typography } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import CurrentMonthCalendarNoteForm from '../../form/CurrentMonthCalendarNoteForm';
+import Theme from '../../../../Theme';
+import { DayWithNote } from '../../../../components/CustomDay/CustomDay';
 
 const cnCurrentMonthCalendarView = cn('CurrentMonthCalendarView');
 
@@ -15,13 +17,26 @@ const CurrentMonthCalendarView = observer(() => {
   return (
     <div className={cnCurrentMonthCalendarView()}>
       <Typography className={cnCurrentMonthCalendarView('Title')}>
-        CurrentMonthCalendarMode
+        Click on a date to create a workout note
       </Typography>
 
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DateCalendar
           className={cnCurrentMonthCalendarView('DateCalendar')}
           onChange={(date) => setSelectedDate(date)}
+          sx={{
+            '& .MuiPickersDay-root': {
+              '&.has-note': {
+                backgroundColor: Theme.palette.primary.light,
+                '&:hover': {
+                  backgroundColor: Theme.palette.primary.main,
+                },
+              },
+            },
+          }}
+          slots={{
+            day: DayWithNote,
+          }}
         />
       </LocalizationProvider>
 
