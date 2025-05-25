@@ -20,6 +20,8 @@
     "axios": "^1.9.0",
     "date-fns": "^4.1.0",
     "formik": "^2.4.6",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
     "mobx": "^6.13.7",
     "mobx-react-lite": "^4.1.0",
     "notistack": "^3.0.2",

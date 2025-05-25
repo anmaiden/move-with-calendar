@@ -16,6 +16,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
+import { useSnackbar } from 'notistack';
 
 interface CurrentMonthCalendarNoteFormProps {
   date: Date;
@@ -25,6 +26,7 @@ interface CurrentMonthCalendarNoteFormProps {
 const CurrentMonthCalendarNoteForm = observer(
   (props: CurrentMonthCalendarNoteFormProps) => {
     const existingNote = CalendarStore.getNoteByDate(props.date.toISOString());
+    const { enqueueSnackbar } = useSnackbar();
 
     const initialCalendarNoteValues: CurrentMonthCalendarModel =
       existingNote || {
@@ -39,6 +41,14 @@ const CurrentMonthCalendarNoteForm = observer(
       validationSchema: validationNoteSchema,
       onSubmit: (values) => {
         CalendarStore.addOrUpdateNote(values);
+        enqueueSnackbar('You added workout', {
+          variant: 'success',
+          autoHideDuration: 3000,
+          anchorOrigin: {
+            vertical: 'bottom',
+            horizontal: 'center',
+          },
+        });
         props.onClose();
       },
     });

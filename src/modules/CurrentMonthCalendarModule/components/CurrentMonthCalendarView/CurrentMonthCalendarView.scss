@@ -1,19 +1,33 @@
 @import '../../../../App';
 
 .CurrentMonthCalendarView {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+  justify-content: center;
+  margin-top: 70px;
+  padding-top: 20px;
 
   &-Title {
     text-align: center;
-    font-size: 28px;
+    font-family: 'DM Serif Text', serif !important;
+    font-size: 58px !important;
     margin-bottom: 20px;
   }
 
   &-DateCalendar {
+    font-family: 'DM Serif Text', serif !important;
+
+    .MuiDayCalendar-weekDayLabel {
+      padding-left: 7px;
+    }
+
+    .MuiDateCalendar-root {
+      width: 500px !important;
+    }
+
     .MuiPickersCalendarHeader-root {
-      margin-top: 0;
+      background: $green-third-color;
+      color: $green-fourth-color;
+      border-radius: 10px;
+      margin-top: 40px;
     }
 
     &-Day {
@@ -35,5 +49,13 @@
       height: 40px;
       margin: 0;
     }
+  }
+
+  &-ExportButton {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 20px;
   }
 }

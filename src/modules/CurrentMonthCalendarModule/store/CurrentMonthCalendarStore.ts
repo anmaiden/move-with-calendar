@@ -34,6 +34,13 @@ class CalendarStore {
     this.saveToLocalStorage();
   }
 
+  removeNoteByDate(dateString: string) {
+    this.savedData.savedData = this.savedData.savedData.filter(
+      (item) => item.date !== dateString
+    );
+    this.saveToLocalStorage();
+  }
+
   hasNoteForDate(dateString: string): boolean {
     return this.savedData.savedData.some((item) => item.date === dateString);
   }

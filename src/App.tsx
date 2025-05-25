@@ -1,12 +1,15 @@
+import { SnackbarProvider } from 'notistack';
 import React from 'react';
 import './App.scss';
 import AppRoutes from './AppRoutes';
 
 function App() {
   return (
-    <div className="App">
-      <AppRoutes />
-    </div>
+    <SnackbarProvider maxSnack={3}>
+      <div className="App">
+        <AppRoutes />
+      </div>
+    </SnackbarProvider>
   );
 }
 
