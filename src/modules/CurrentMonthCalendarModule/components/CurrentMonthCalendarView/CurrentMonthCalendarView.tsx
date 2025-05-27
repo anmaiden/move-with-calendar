@@ -8,8 +8,6 @@ import { observer } from 'mobx-react-lite';
 import CurrentMonthCalendarNoteForm from '../../form/CurrentMonthCalendarNoteForm';
 import Theme from '../../../../Theme';
 import { DayWithNote } from '../../../../components/CustomDay/CustomDay';
-import { BackToHomeButton } from '../../../../components/Inputs/BackToHomeButton/BackToHomeButton';
-import ExportToPDF from '../../../ExportToPdfModule/components/ExportToPdf';
 
 const cnCurrentMonthCalendarView = cn('CurrentMonthCalendarView');
 
@@ -18,8 +16,6 @@ const CurrentMonthCalendarView = observer(() => {
 
   return (
     <Box className={cnCurrentMonthCalendarView()}>
-      <BackToHomeButton />
-
       <Typography className={cnCurrentMonthCalendarView('Title')}>
         Click on a date to create a workout note
       </Typography>

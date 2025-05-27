@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router';
 import CurrentMonthCalendarView from './modules/CurrentMonthCalendarModule/components/CurrentMonthCalendarView/CurrentMonthCalendarView';
 import WorkoutYouTubeModule from './modules/WorkoutYouTubeModule/components/WorkoutYouTubeModule';
 import ActivityHistory from './modules/ActivityHistoryModule/components/ActivityHistory';
