@@ -9,7 +9,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
 } from '@mui/material';
 import '../style/ActivityHistory.scss';
 import calendarStore from '../../CurrentMonthCalendarModule/store/CurrentMonthCalendarStore';
@@ -72,7 +71,10 @@ const ActivityHistory = observer(() => {
         Total workouts: {totalWorkouts}
       </Grid>
 
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        className={cnActivityHistory('TableContainer')}
+      >
         <Table
           aria-label="activity table"
           className={cnActivityHistory('Table')}

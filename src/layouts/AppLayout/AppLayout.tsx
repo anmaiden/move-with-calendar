@@ -1,5 +1,10 @@
 import React, { ReactNode } from 'react';
+import './AppLayout.scss';
+import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
+import { cn } from '@bem-react/classname';
+
+const cnAppLayout = cn('AppLayout');
 
 interface AppLayoutProps {
   children?: ReactNode;
@@ -7,10 +12,11 @@ interface AppLayoutProps {
 
 const AppLayout = (props: AppLayoutProps) => {
   return (
-    <>
+    <div className={cnAppLayout()}>
       <Navbar />
-      <main>{props.children}</main>
-    </>
+      <main className={cnAppLayout('Main')}>{props.children}</main>
+      <Footer />
+    </div>
   );
 };
 
