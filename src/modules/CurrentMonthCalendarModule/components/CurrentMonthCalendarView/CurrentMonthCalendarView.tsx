@@ -44,10 +44,6 @@ const CurrentMonthCalendarView = observer(() => {
         />
       </LocalizationProvider>
 
-      <Box className={cnCurrentMonthCalendarView('ExportButton')}>
-        <ExportToPDF />
-      </Box>
-
       {selectedDate && (
         <CurrentMonthCalendarNoteForm
           date={selectedDate}

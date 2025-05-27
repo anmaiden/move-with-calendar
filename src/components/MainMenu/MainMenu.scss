@@ -1,0 +1,18 @@
+@import '../../App';
+
+.MainMenu {
+  justify-content: space-between;
+  align-items: center;
+
+  /* From https://css.glass */
+  background: rgba(182, 205, 189, 0.45);
+  border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2.9px);
+  -webkit-backdrop-filter: blur(2.9px);
+  border: 1px solid rgba(182, 205, 189, 0.18);
+
+  &-Item {
+    text-align: center;
+  }
+}

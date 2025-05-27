@@ -7,4 +7,6 @@ export interface CurrentMonthCalendarModel {
   videoUrl: string;
   weekNumber: number | null;
   dayNumber: number | null;
+  calories: number | null;
+  note: string;
 }

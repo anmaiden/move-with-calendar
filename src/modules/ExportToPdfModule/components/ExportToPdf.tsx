@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import { Button, IconButton, Tooltip } from '@mui/material';
 import { observer } from 'mobx-react-lite';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -17,7 +17,7 @@ const ExportToPDF: React.FC<ExportToPDFButtonProps> = observer(
       const doc = new jsPDF();
 
       doc.setFontSize(20);
-      doc.text('Your workout MoveWith statistics', 105, 20, {
+      doc.text('Activity History', 105, 20, {
         align: 'center',
       });
       doc.setFontSize(12);
@@ -25,16 +25,29 @@ const ExportToPDF: React.FC<ExportToPDFButtonProps> = observer(
         align: 'center',
       });
 
-      const tableData = calendarStore.savedData.savedData.map((note, index) => [
+      const tableData = calendarStore.savedData.savedData.map((item, index) => [
         index + 1,
-        formatDate(note.date),
-        note.weekNumber,
-        note.dayNumber,
+        formatDate(item.date),
+        item.dayNumber,
+        item.weekNumber,
+        item.calories,
+        item.videoUrl || '-',
+        item.note,
       ]);
 
       autoTable(doc, {
         startY: 40,
-        head: [['#', 'Workout Date', 'Week', 'Day']],
+        head: [
+          [
+            '#',
+            'Workout Date',
+            'Day Number',
+            'Week Number',
+            'Calories Burned',
+            'Video',
+            'Note',
+          ],
+        ],
         body: tableData,
         styles: {
           cellPadding: 5,
@@ -51,16 +64,33 @@ const ExportToPDF: React.FC<ExportToPDFButtonProps> = observer(
           1: { cellWidth: 'auto' },
           2: { cellWidth: 'auto' },
           3: { cellWidth: 'auto' },
+          5: { cellWidth: 40 },
         },
-        didDrawPage: (data) => {
-          // Колонтитулы
-          doc.setFontSize(10);
-          const pageCount = doc.getNumberOfPages();
-          doc.text(
-            `Page ${data.pageNumber} of ${pageCount}`,
-            data.settings.margin.left,
-            doc.internal.pageSize.height - 10
-          );
+        didParseCell: function (data) {
+          if (
+            data.section === 'body' &&
+            data.column.index === 5 &&
+            data.cell.raw !== '-' &&
+            data.cell.raw
+          ) {
+            data.cell.text = [''];
+          }
+        },
+        didDrawCell: function (data) {
+          if (
+            data.section === 'body' &&
+            data.column.index === 5 &&
+            data.cell.raw !== '-' &&
+            data.cell.raw
+          ) {
+            doc.setTextColor(0, 0, 123);
+            doc.textWithLink(
+              'click here',
+              data.cell.x + 2,
+              data.cell.y + data.cell.height / 2 + 2,
+              { url: data.cell.raw }
+            );
+          }
         },
       });
 
@@ -72,15 +102,18 @@ const ExportToPDF: React.FC<ExportToPDFButtonProps> = observer(
     };
 
     return (
-      <Button
-        variant="contained"
-        onClick={handleExport}
-        startIcon={<PictureAsPdfRounded />}
-        className={className}
-        disabled={calendarStore.savedData.savedData.length === 0}
-      >
-        Export all my workouts to PDF
-      </Button>
+      <Tooltip title={'Export to PDF'}>
+        <Button
+          variant="contained"
+          size={'small'}
+          onClick={handleExport}
+          endIcon={<PictureAsPdfRounded />}
+          className={className}
+          disabled={calendarStore.savedData.savedData.length === 0}
+        >
+          Export
+        </Button>
+      </Tooltip>
     );
   }
 );

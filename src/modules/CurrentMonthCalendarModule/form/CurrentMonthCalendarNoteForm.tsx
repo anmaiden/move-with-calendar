@@ -34,6 +34,8 @@ const CurrentMonthCalendarNoteForm = observer(
         videoUrl: '',
         weekNumber: null,
         dayNumber: null,
+        calories: null,
+        note: '',
       };
 
     const formik = useFormik({
@@ -79,7 +81,9 @@ const CurrentMonthCalendarNoteForm = observer(
                 id="weekNumber"
                 name="weekNumber"
                 value={formik.values.weekNumber}
-                onChange={formik.handleChange}
+                onChange={(event) =>
+                  formik.setFieldValue('weekNumber', Number(event.target.value))
+                }
                 label="Week Number"
               >
                 {[1, 2, 3, 4].map((num) => (
@@ -102,7 +106,9 @@ const CurrentMonthCalendarNoteForm = observer(
                 id="dayNumber"
                 name="dayNumber"
                 value={formik.values.dayNumber}
-                onChange={formik.handleChange}
+                onChange={(event) =>
+                  formik.setFieldValue('dayNumber', Number(event.target.value))
+                }
                 label="Day Number"
               >
                 {[1, 2, 3, 4, 5, 6].map((num) => (
@@ -117,7 +123,24 @@ const CurrentMonthCalendarNoteForm = observer(
                 </Typography>
               )}
             </FormControl>
-
+            <TextField
+              fullWidth
+              id="calories"
+              name="calories"
+              label="calories burn"
+              value={formik.values.calories}
+              onChange={formik.handleChange}
+              sx={{ mb: 3 }}
+            />
+            <TextField
+              fullWidth
+              id="note"
+              name="note"
+              label="note"
+              value={formik.values.note}
+              onChange={formik.handleChange}
+              sx={{ mb: 3 }}
+            />
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
               <Button onClick={props.onClose} variant="outlined">
                 Cancel

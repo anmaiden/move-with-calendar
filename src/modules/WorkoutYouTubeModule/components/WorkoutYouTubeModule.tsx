@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import './WorkoutYouTubeModule.scss';
-import { WorkoutYouTubeModel } from '../model/WorkoutYouTubeModel';
 import { useSnackbar } from 'notistack';
 import { CircularProgress, Grid } from '@mui/material';
 import LinksComponent from '../../../components/LinksComponent/LinksComponent';
 import { fetchChannelPlaylists } from '../service/WorkoutYouTubeService';
 import { cn } from '@bem-react/classname';
+import { observer } from 'mobx-react-lite';
+import workoutYouTubeStore from '../store/WorkoutYouTubeStore';
 
 const cnWorkoutYouTubeModule = cn('WorkoutYouTubeModule');
 
-const WorkoutYouTubeModule = () => {
-  const [playlists, setPlaylists] = useState<WorkoutYouTubeModel[]>([]);
+const WorkoutYouTubeModule = observer(() => {
   const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadPlaylists = async () => {
-      try {
-        const data = await fetchChannelPlaylists();
-        setPlaylists(data);
-      } catch (error) {
+    setLoading(true);
+
+    fetchChannelPlaylists()
+      .then((data) => {
+        workoutYouTubeStore.setPlaylists(data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
         enqueueSnackbar('Failed to load YouTube playlists', {
           variant: 'error',
           autoHideDuration: 3000,
         });
-        console.error('Error loading playlists:', error);
-      } finally {
+      })
+      .finally(() => {
         setLoading(false);
-      }
-    };
-
-    loadPlaylists();
+      });
   }, []);
 
   return (
@@ -41,7 +41,7 @@ const WorkoutYouTubeModule = () => {
         </div>
       ) : (
         <Grid container spacing={1} className={cnWorkoutYouTubeModule()}>
-          {playlists.map((playlist) => (
+          {workoutYouTubeStore.playlists.map((playlist) => (
             <Grid
               size={{ xs: 12, md: 4, lg: 2 }}
               key={playlist.url}
@@ -61,6 +61,6 @@ const WorkoutYouTubeModule = () => {
       )}
     </>
   );
-};
+});
 
 export default WorkoutYouTubeModule;
