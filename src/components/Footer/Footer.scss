@@ -1,0 +1,30 @@
+@import '../../App';
+
+.Footer {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  padding: 15px 30px;
+  align-items: center;
+  text-align: center;
+  justify-content: space-evenly;
+
+  &-TitleApp {
+    font-family: 'Lobster', sans-serif !important;
+    letter-spacing: 2px;
+  }
+
+  &-Link {
+    color: $green-fourth-color;
+    font-family: 'Lobster', sans-serif !important;
+
+    &:hover {
+      color: $green-third-color;
+      transition: ease-in-out 0.5s;
+    }
+  }
+}

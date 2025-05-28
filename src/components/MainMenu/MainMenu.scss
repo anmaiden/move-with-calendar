@@ -1,0 +1,19 @@
+@import '../../App';
+
+.MainMenu {
+  max-width: 500px;
+  justify-content: space-between;
+  align-items: center;
+
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+  rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset,
+  0 4px 30px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+
+  &-Item {
+    text-align: center;
+  }
+}

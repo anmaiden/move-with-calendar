@@ -1,0 +1,45 @@
+@import '../../../App';
+
+.ActivityHistory {
+  padding: 20px;
+  max-width: 90%;
+  margin: 0 auto;
+  text-align: center;
+
+  &-TableContainer {
+    overflow-x: auto !important;
+  }
+
+  &-Table {
+    min-width: 600px !important;
+  }
+
+  &-TotalText {
+    color: $green-fourth-color;
+    font-size: 23px;
+    font-weight: 700;
+  }
+
+  &-ExportBtn {
+    text-align: right;
+  }
+
+  .MuiTableCell-head {
+    text-align: center;
+    font-weight: bold;
+
+
+    &:not(:nth-last-child(-n+2)):hover {
+      cursor: n-resize;
+      background: $green-third-color;
+    }
+  }
+
+  .MuiTableRow-root:hover {
+    background: $green-second-color;
+  }
+
+  .MuiTableCell-root {
+    text-align: center;
+  }
+}

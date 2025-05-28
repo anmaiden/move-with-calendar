@@ -1,0 +1,58 @@
+@import '../../../../App';
+
+.CurrentMonthCalendarView {
+  justify-content: center;
+  margin-top: 70px;
+  padding-top: 20px;
+
+  &-Title {
+    text-align: center;
+    color: $green-third-color;
+    font-family: 'DM Serif Text', serif !important;
+    font-size: 30px !important;
+    margin-bottom: 20px;
+  }
+
+  &-DateCalendar {
+    font-family: 'DM Serif Text', serif !important;
+
+    .MuiDayCalendar-weekDayLabel {
+      padding-left: 7px;
+    }
+
+    .MuiPickersCalendarHeader-root {
+      background: $green-third-color;
+      color: $green-fourth-color;
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+
+    &-Day {
+      &_has-note {
+        background-color: $green-third-color;
+
+        &:hover {
+          background-color: $green-fourth-color;
+        }
+      }
+    }
+
+    .MuiDayCalendar-weekContainer {
+      justify-content: space-around;
+    }
+
+    .MuiPickersDay-root {
+      width: 40px;
+      height: 40px;
+      margin: 0;
+    }
+  }
+
+  &-ExportButton {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+}
