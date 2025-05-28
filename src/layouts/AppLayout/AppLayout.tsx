@@ -3,6 +3,7 @@ import './AppLayout.scss';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
 import { cn } from '@bem-react/classname';
+import ProfileDashboard from '../../components/ProfileDashboard/ProfileDashboard';
 
 const cnAppLayout = cn('AppLayout');
 

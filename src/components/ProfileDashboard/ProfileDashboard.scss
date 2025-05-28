@@ -1,0 +1,31 @@
+@import '../../App';
+
+.ProfileDashboard {
+  padding: 50px;
+
+  &-WelcomeText {
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Lobster', sans-serif !important;
+    letter-spacing: 3px !important;
+
+    font-size: 60px !important;
+    color: $green-fourth-color;
+  }
+
+  &-User {
+    padding-bottom: 20px;
+  }
+
+  &-Profile,
+  &-Settings,
+  &-Workout {
+    border-radius: 20px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset,
+    0 4px 30px rgba(0, 0, 0, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  }
+}

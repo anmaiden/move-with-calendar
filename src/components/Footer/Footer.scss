@@ -14,12 +14,13 @@
   justify-content: space-evenly;
 
   &-TitleApp {
-    font-family: 'League Script', cursive !important;
+    font-family: 'Lobster', sans-serif !important;
     letter-spacing: 2px;
   }
 
   &-Link {
     color: $green-fourth-color;
+    font-family: 'Lobster', sans-serif !important;
 
     &:hover {
       color: $green-third-color;

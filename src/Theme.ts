@@ -25,7 +25,7 @@ const Theme = createTheme({
           textTransform: 'none',
           padding: '12px 14px',
           fontWeight: 'bold',
-          fontFamily: '"DM Serif Text", serif',
+          fontFamily: '"Lobster", serif',
         },
       },
       variants: [
