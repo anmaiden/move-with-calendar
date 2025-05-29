@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/move-with-calendar/static/css/main.d5b2878b.css",
-    "main.js": "/move-with-calendar/static/js/main.d0ae935d.js",
+    "main.css": "/move-with-calendar/static/css/main.bdcfcb6b.css",
+    "main.js": "/move-with-calendar/static/js/main.61d4d034.js",
     "static/js/239.cb725e73.chunk.js": "/move-with-calendar/static/js/239.cb725e73.chunk.js",
     "static/js/977.0fa70fa4.chunk.js": "/move-with-calendar/static/js/977.0fa70fa4.chunk.js",
     "static/js/455.2ec8fa1a.chunk.js": "/move-with-calendar/static/js/455.2ec8fa1a.chunk.js",
     "static/media/2.jpg": "/move-with-calendar/static/media/2.fe60723017fea89651f1.jpg",
     "index.html": "/move-with-calendar/index.html",
-    "main.d5b2878b.css.map": "/move-with-calendar/static/css/main.d5b2878b.css.map",
-    "main.d0ae935d.js.map": "/move-with-calendar/static/js/main.d0ae935d.js.map",
+    "main.bdcfcb6b.css.map": "/move-with-calendar/static/css/main.bdcfcb6b.css.map",
+    "main.61d4d034.js.map": "/move-with-calendar/static/js/main.61d4d034.js.map",
     "239.cb725e73.chunk.js.map": "/move-with-calendar/static/js/239.cb725e73.chunk.js.map",
     "977.0fa70fa4.chunk.js.map": "/move-with-calendar/static/js/977.0fa70fa4.chunk.js.map",
     "455.2ec8fa1a.chunk.js.map": "/move-with-calendar/static/js/455.2ec8fa1a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d5b2878b.css",
-    "static/js/main.d0ae935d.js"
+    "static/css/main.bdcfcb6b.css",
+    "static/js/main.61d4d034.js"
   ]
 }
