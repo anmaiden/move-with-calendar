@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/move-with-calendar">
       <ThemeProvider theme={Theme}>
         <App />
       </ThemeProvider>
