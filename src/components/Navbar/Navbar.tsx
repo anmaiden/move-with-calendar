@@ -12,7 +12,11 @@ const Navbar = () => {
   const location = useLocation();
   return (
     <Grid container spacing={2} className={cnNavbar()}>
-      <Grid container size={{ xs: 7, sm: 7, md: 7, lg: 7 }}>
+      <Grid
+        container
+        size={{ xs: 7, sm: 7, md: 7, lg: 7 }}
+        className={cnNavbar('TitleContainer')}
+      >
         <Typography className={cnNavbar('TitleApp')}>Move With App</Typography>
         {location.pathname !== '/' && <BackToHomeButton />}
       </Grid>

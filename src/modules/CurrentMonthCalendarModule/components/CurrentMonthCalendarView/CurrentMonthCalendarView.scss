@@ -18,6 +18,10 @@
       padding-left: 7px;
     }
 
+    .MuiDayCalendar-root {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
     .MuiPickersCalendarHeader-root {
       background: $green-third-color;
       color: $green-fourth-color;
