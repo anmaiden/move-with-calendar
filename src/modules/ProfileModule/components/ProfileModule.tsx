@@ -1,55 +1,51 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 import SaveIcon from '@mui/icons-material/Save';
 import {
   Box,
   Button,
-  Card,
-  CardContent,
   Divider,
   Grid,
   TextField,
   Typography,
 } from '@mui/material';
 import Person2Icon from '@mui/icons-material/Person2';
-import { UserProfileData } from '../model/ProfileModuleModel';
+import { profileStore } from '../store/ProfileStore';
+import { useSnackbar } from 'notistack';
 
 const ProfileModule = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
   const [isEditing, setIsEditing] = useState(false);
-  const [userData, setUserData] = useState<UserProfileData>({
-    name: '',
-    height: '',
-    weight: '',
-  });
-
-  useEffect(() => {
-    // Загрузка данных из localStorage при монтировании компонента
-    const savedData = localStorage.getItem('userProfile');
-    if (savedData) {
-      try {
-        const parsedData = JSON.parse(savedData) as UserProfileData;
-        setUserData(parsedData);
-      } catch (e) {
-        console.error('Failed to parse user profile data', e);
-      }
-    }
-  }, []);
-
-  const handleSave = () => {
-    // Сохранение данных в localStorage
-    localStorage.setItem('userProfile', JSON.stringify(userData));
-    setIsEditing(false);
-  };
+  const [editData, setEditData] = useState(profileStore.profileData);
 
   const handleInputChange =
-    (field: keyof UserProfileData) =>
+    (field: keyof typeof profileStore.profileData) =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setUserData((prev) => ({
+      setEditData((prev) => ({
         ...prev,
         [field]:
           field === 'name' ? e.target.value : Number(e.target.value) || '',
       }));
     };
+
+  const handleSave = () => {
+    profileStore.saveProfile(editData);
+    setIsEditing(false);
+    enqueueSnackbar('Profile updated', {
+      variant: 'success',
+      autoHideDuration: 3000,
+      anchorOrigin: {
+        vertical: 'bottom',
+        horizontal: 'right',
+      },
+    });
+  };
+
+  const handleEditStart = () => {
+    setEditData(profileStore.profileData);
+    setIsEditing(true);
+  };
   return (
     <Grid size={{ xs: 12 }}>
       <Box display="flex" alignItems="center" mb={2}>
@@ -60,7 +56,7 @@ const ProfileModule = () => {
         {!isEditing && (
           <EditIcon
             color="action"
-            onClick={() => setIsEditing(true)}
+            onClick={handleEditStart}
             sx={{ cursor: 'pointer' }}
           />
         )}
@@ -73,7 +69,7 @@ const ProfileModule = () => {
               <TextField
                 fullWidth
                 variant="outlined"
-                value={userData.name}
+                value={editData.name}
                 onChange={handleInputChange('name')}
                 label="Your name"
                 size="small"
@@ -84,7 +80,7 @@ const ProfileModule = () => {
               <TextField
                 fullWidth
                 variant="outlined"
-                value={userData.height}
+                value={editData.height}
                 onChange={handleInputChange('height')}
                 label="Height (cm)"
                 type="number"
@@ -96,7 +92,7 @@ const ProfileModule = () => {
               <TextField
                 fullWidth
                 variant="outlined"
-                value={userData.weight}
+                value={editData.weight}
                 onChange={handleInputChange('weight')}
                 label="Weight (kg)"
                 type="number"
@@ -119,7 +115,7 @@ const ProfileModule = () => {
       ) : (
         <Box>
           <Typography variant="h4" gutterBottom>
-            {userData.name || 'No name provided'}
+            {profileStore.profileData.name || 'No name provided'}
           </Typography>
 
           <Divider sx={{ my: 2 }} />
@@ -130,7 +126,9 @@ const ProfileModule = () => {
                 Height
               </Typography>
               <Typography variant="body1">
-                {userData.height ? `${userData.height} cm` : 'Not specified'}
+                {profileStore.profileData.height
+                  ? `${profileStore.profileData.height} cm`
+                  : 'Not specified'}
               </Typography>
             </Grid>
             <Grid size={{ xs: 6 }}>
@@ -138,7 +136,9 @@ const ProfileModule = () => {
                 Weight
               </Typography>
               <Typography variant="body1">
-                {userData.weight ? `${userData.weight} kg` : 'Not specified'}
+                {profileStore.profileData.weight
+                  ? `${profileStore.profileData.weight} kg`
+                  : 'Not specified'}
               </Typography>
             </Grid>
           </Grid>

@@ -3,6 +3,7 @@ import { WorkoutYouTubeModel } from '../model/WorkoutYouTubeModel';
 
 class WorkoutYouTubeStore {
   playlists: WorkoutYouTubeModel[] = [];
+  isLoaded = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -10,6 +11,7 @@ class WorkoutYouTubeStore {
 
   setPlaylists(playlists: WorkoutYouTubeModel[]) {
     this.playlists = playlists;
+    this.isLoaded = true;
   }
 }
 

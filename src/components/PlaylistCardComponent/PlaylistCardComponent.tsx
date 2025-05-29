@@ -1,5 +1,5 @@
 import React from 'react';
-import './LinksComponent.scss';
+import './PlaylistCardComponent.scss';
 import { cn } from '@bem-react/classname';
 import {
   Button,
@@ -11,23 +11,23 @@ import {
   Typography,
 } from '@mui/material';
 
-const cnLinksComponent = cn('LinksComponent');
+const cnPlaylistCardComponent = cn('PlaylistCardComponent');
 
-interface LinksComponentProps {
+interface PlaylistCardComponentProps {
   youtubeUrl: string;
   title: string;
   imageUrl?: string;
 }
 
-const LinksComponent = (props: LinksComponentProps) => {
+const PlaylistCardComponent = (props: PlaylistCardComponentProps) => {
   return (
     <Grid container>
-      <Card sx={{ maxWidth: 290 }} className={cnLinksComponent('Card')}>
+      <Card sx={{ maxWidth: 290 }} className={cnPlaylistCardComponent('Card')}>
         <CardMedia
           sx={{ height: 170 }}
           image={props.imageUrl}
           title={props.title}
-          className={cnLinksComponent('CardMedia')}
+          className={cnPlaylistCardComponent('CardMedia')}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
@@ -49,4 +49,4 @@ const LinksComponent = (props: LinksComponentProps) => {
   );
 };
 
-export default LinksComponent;
+export default PlaylistCardComponent;
