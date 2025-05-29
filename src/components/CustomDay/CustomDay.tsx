@@ -24,7 +24,7 @@ const CustomDay = styled(PickersDay)<PickersDayProps & { hasNote?: boolean }>(
 );
 
 export const DayWithNote = observer((props: PickersDayProps) => {
-  const hasNote = CalendarStore.hasNoteForDate(props.day.toISOString());
+  const hasNote = CalendarStore.hasWorkoutForDate(props.day.toISOString());
   const { enqueueSnackbar } = useSnackbar();
   return (
     <>
@@ -41,7 +41,7 @@ export const DayWithNote = observer((props: PickersDayProps) => {
                 className="remove-button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  CalendarStore.removeNoteByDate(props.day.toISOString());
+                  CalendarStore.removeWorkoutByDate(props.day.toISOString());
                   enqueueSnackbar('Workout removed', {
                     variant: 'warning',
                     autoHideDuration: 3000,

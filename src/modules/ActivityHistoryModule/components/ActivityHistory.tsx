@@ -87,13 +87,10 @@ const ActivityHistory = observer(() => {
               <TableCell onClick={() => requestSort('dayNumber')}>
                 Day Number
               </TableCell>
-              <TableCell onClick={() => requestSort('weekNumber')}>
-                Week Number
-              </TableCell>
               <TableCell onClick={() => requestSort('calories')}>
                 Calories Burned
               </TableCell>
-              <TableCell>Video url</TableCell>
+              <TableCell>Playlist</TableCell>
               <TableCell>Note</TableCell>
             </TableRow>
           </TableHead>
@@ -105,13 +102,8 @@ const ActivityHistory = observer(() => {
               >
                 <TableCell>{formatDate(row.date)}</TableCell>
                 <TableCell>{row.dayNumber}</TableCell>
-                <TableCell>{row.weekNumber}</TableCell>
                 <TableCell>{row.calories}</TableCell>
-                <TableCell>
-                  <Link href={row.videoUrl} target="_blank" rel="noopener">
-                    {row.videoUrl}
-                  </Link>
-                </TableCell>
+                <TableCell>{row.videoPlaylist}</TableCell>
                 <TableCell>{row.note}</TableCell>
               </TableRow>
             ))}

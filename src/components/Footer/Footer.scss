@@ -1,6 +1,8 @@
 @import '../../App';
 
 .Footer {
+  color: $green-fourth-color;
+  font-family: 'Lobster', sans-serif !important;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -19,9 +21,6 @@
   }
 
   &-Link {
-    color: $green-fourth-color;
-    font-family: 'Lobster', sans-serif !important;
-
     &:hover {
       color: $green-third-color;
       transition: ease-in-out 0.5s;

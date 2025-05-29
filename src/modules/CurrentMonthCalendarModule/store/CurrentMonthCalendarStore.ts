@@ -20,7 +20,7 @@ class CalendarStore {
     );
   }
 
-  addOrUpdateNote(note: CurrentMonthCalendarModel) {
+  addOrUpdateWorkout(note: CurrentMonthCalendarModel) {
     const existingIndex = this.savedData.savedData.findIndex(
       (item) => item.date === note.date
     );
@@ -34,18 +34,18 @@ class CalendarStore {
     this.saveToLocalStorage();
   }
 
-  removeNoteByDate(dateString: string) {
+  removeWorkoutByDate(dateString: string) {
     this.savedData.savedData = this.savedData.savedData.filter(
       (item) => item.date !== dateString
     );
     this.saveToLocalStorage();
   }
 
-  hasNoteForDate(dateString: string): boolean {
+  hasWorkoutForDate(dateString: string): boolean {
     return this.savedData.savedData.some((item) => item.date === dateString);
   }
 
-  getNoteByDate(dateString: string): CurrentMonthCalendarModel | undefined {
+  getWorkoutByDate(dateString: string): CurrentMonthCalendarModel | undefined {
     return this.savedData.savedData.find((item) => item.date === dateString);
   }
 }

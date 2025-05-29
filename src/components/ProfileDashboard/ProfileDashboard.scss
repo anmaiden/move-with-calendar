@@ -11,15 +11,16 @@
 
     font-size: 60px !important;
     color: $green-fourth-color;
+
+    @media (max-width: 600px) {
+      font-size: 25px !important;
+    }
   }
 
-  &-User {
-    padding-bottom: 20px;
-  }
+  &-Card {
+    padding: 5px 10px;
+    min-height: 100px;
 
-  &-Profile,
-  &-Settings,
-  &-Workout {
     border-radius: 20px !important;
     background: rgba(255, 255, 255, 0.2) !important;
     backdrop-filter: blur(10px) !important;

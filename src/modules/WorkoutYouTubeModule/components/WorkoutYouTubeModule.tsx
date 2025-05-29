@@ -1,37 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import './WorkoutYouTubeModule.scss';
-import { useSnackbar } from 'notistack';
 import { CircularProgress, Grid } from '@mui/material';
-import LinksComponent from '../../../components/LinksComponent/LinksComponent';
-import { fetchChannelPlaylists } from '../service/WorkoutYouTubeService';
 import { cn } from '@bem-react/classname';
 import { observer } from 'mobx-react-lite';
 import workoutYouTubeStore from '../store/WorkoutYouTubeStore';
+import PlaylistCardComponent from '../../../components/PlaylistCardComponent/PlaylistCardComponent';
+import { fetchChannelPlaylists } from '../service/WorkoutYouTubeService';
 
 const cnWorkoutYouTubeModule = cn('WorkoutYouTubeModule');
 
 const WorkoutYouTubeModule = observer(() => {
-  const { enqueueSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
-
-    fetchChannelPlaylists()
-      .then((data) => {
-        workoutYouTubeStore.setPlaylists(data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        enqueueSnackbar('Failed to load YouTube playlists', {
-          variant: 'error',
-          autoHideDuration: 3000,
-        });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+    if (!workoutYouTubeStore.isLoaded) {
+      setLoading(true);
+      fetchChannelPlaylists()
+        .then((playlists) => workoutYouTubeStore.setPlaylists(playlists))
+        .finally(() => setLoading(false));
+    } else {
+      setLoading(false);
+    }
+  }, [workoutYouTubeStore.isLoaded]);
 
   return (
     <>
@@ -50,7 +40,7 @@ const WorkoutYouTubeModule = observer(() => {
                 justifyContent: 'center',
               }}
             >
-              <LinksComponent
+              <PlaylistCardComponent
                 youtubeUrl={playlist.url}
                 title={playlist.title}
                 imageUrl={playlist.thumbnails}

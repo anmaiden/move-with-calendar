@@ -17,6 +17,7 @@ import {
   Typography,
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
+import workoutYouTubeStore from '../../WorkoutYouTubeModule/store/WorkoutYouTubeStore';
 
 interface CurrentMonthCalendarNoteFormProps {
   date: Date;
@@ -25,24 +26,29 @@ interface CurrentMonthCalendarNoteFormProps {
 
 const CurrentMonthCalendarNoteForm = observer(
   (props: CurrentMonthCalendarNoteFormProps) => {
-    const existingNote = CalendarStore.getNoteByDate(props.date.toISOString());
+    const existingWorkout = CalendarStore.getWorkoutByDate(
+      props.date.toISOString()
+    );
     const { enqueueSnackbar } = useSnackbar();
 
-    const initialCalendarNoteValues: CurrentMonthCalendarModel =
-      existingNote || {
-        date: props.date.toISOString(),
-        videoUrl: '',
-        weekNumber: null,
-        dayNumber: null,
-        calories: null,
-        note: '',
-      };
+    const initialCalendarNoteValues: CurrentMonthCalendarModel = {
+      date: props.date.toISOString(),
+      videoPlaylist: existingWorkout?.videoPlaylist || '',
+      dayNumber: existingWorkout?.dayNumber || 1,
+      calories: existingWorkout?.calories || 0,
+      note: existingWorkout?.note || '',
+    };
 
     const formik = useFormik({
       initialValues: initialCalendarNoteValues,
       validationSchema: validationNoteSchema,
       onSubmit: (values) => {
-        CalendarStore.addOrUpdateNote(values);
+        const workoutToSave: CurrentMonthCalendarModel = {
+          ...values,
+          videoPlaylist: values.videoPlaylist || null,
+        };
+
+        CalendarStore.addOrUpdateWorkout(workoutToSave);
         enqueueSnackbar('You added workout', {
           variant: 'success',
           autoHideDuration: 3000,
@@ -62,41 +68,27 @@ const CurrentMonthCalendarNoteForm = observer(
             Note for {props.date.toLocaleDateString()}
           </Typography>
           <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 2 }}>
-            <TextField
-              fullWidth
-              id="videoUrl"
-              name="videoUrl"
-              label="YouTube url"
-              value={formik.values.videoUrl}
-              onChange={formik.handleChange}
-              error={formik.touched.videoUrl && Boolean(formik.errors.videoUrl)}
-              helperText={formik.touched.videoUrl && formik.errors.videoUrl}
-              sx={{ mb: 3 }}
-            />
-
             <FormControl fullWidth sx={{ mb: 3 }}>
-              <InputLabel id="weekNumber-label">Week Number</InputLabel>
+              <InputLabel id="video-label">Workout Video/Playlist</InputLabel>
               <Select
-                labelId="weekNumber-label"
-                id="weekNumber"
-                name="weekNumber"
-                value={formik.values.weekNumber}
-                onChange={(event) =>
-                  formik.setFieldValue('weekNumber', Number(event.target.value))
+                labelId="video-label"
+                id="videoPlaylist"
+                name="videoPlaylist"
+                value={formik.values.videoPlaylist}
+                onChange={(e) =>
+                  formik.setFieldValue('videoPlaylist', e.target.value)
                 }
-                label="Week Number"
+                label="Workout Video/Playlist"
               >
-                {[1, 2, 3, 4].map((num) => (
-                  <MenuItem key={num} value={num}>
-                    Week {num}
+                <MenuItem value="-">
+                  <em>None</em>
+                </MenuItem>
+                {workoutYouTubeStore.playlists.map((playlist) => (
+                  <MenuItem key={playlist.id} value={playlist.title}>
+                    {playlist.title}
                   </MenuItem>
                 ))}
               </Select>
-              {formik.touched.weekNumber && formik.errors.weekNumber && (
-                <Typography color="error" variant="caption">
-                  {formik.errors.weekNumber}
-                </Typography>
-              )}
             </FormControl>
 
             <FormControl fullWidth sx={{ mb: 3 }}>
@@ -141,6 +133,11 @@ const CurrentMonthCalendarNoteForm = observer(
               onChange={formik.handleChange}
               sx={{ mb: 3 }}
             />
+            {formik.touched.note && formik.errors.note && (
+              <Typography color="error" variant="caption">
+                {formik.errors.note}
+              </Typography>
+            )}
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
               <Button onClick={props.onClose} variant="outlined">
                 Cancel

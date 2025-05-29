@@ -1,4 +1,4 @@
-.LinksComponent {
+.PlaylistCardComponent {
   &-Card {
     max-width: 290px;
     transition: all 0.3s ease;
@@ -6,7 +6,7 @@
     &:hover {
       cursor: pointer;
 
-      .LinksComponent-CardMedia {
+      .PlaylistCardComponent-CardMedia {
         filter: blur(0px);
       }
     }
