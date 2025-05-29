@@ -2,6 +2,7 @@
   "name": "move-with-calendar",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://anmaiden.github.io/move-with-calendar/",
   "dependencies": {
     "@bem-react/classname": "^1.6.0",
     "@emotion/react": "^11.14.0",
@@ -36,6 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "gh-pages -d .",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -59,6 +61,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.3.3",
+    "gh-pages": "^6.3.0",
     "prettier": "^3.5.3",
     "sass": "^1.89.0"
   }
