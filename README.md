@@ -1,46 +1,63 @@
-# Getting Started with Create React App
+# MoveWithApp
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A minimalist workout tracker for Pilates enthusiasts, designed to log sessions, visualize progress, and export data effortlessly.
 
-## Available Scripts
+✨ **Live Demo**: [https://anmaiden.github.io/move-with-calendar/](https://anmaiden.github.io/move-with-calendar/)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Key Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 📅 Simple Workout Logging
+- Click any date in the calendar to log your Pilates session
+- No repetitive forms—just mark and go
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 📊 All Your Stats in One Place
+- Visual dashboard with workout frequency and trends
+- Table view for detailed progress tracking
 
-### `npm test`
+### 🎨 Personalized Experience
+- Customize your profile (name, height/weight, goals)
+- Choose light/dark theme to match your style
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📤 One-Click Data Export
+- Generate PDF reports of all workouts
+- Ideal for sharing with trainers or tracking long-term progress
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How to Use
+1. **Log a workout**: Click on any calendar date
+2. **View stats**: Check the dashboard for insights
+3. **Export**: Hit "Download PDF" to save your history
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Tech Stack
+- Frontend: React, TypeScript, MobX
+- UI: Material v7.1.0
+- Data: LocalStorage (no backend needed)
+- PDF Generation: JSPDF
+- Deploy: GitHub Pages
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Presentation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![card1](https://github.com/user-attachments/assets/81ab678b-6c0b-46c8-af7e-1625f7739947)
+![card2](https://github.com/user-attachments/assets/82620f22-cf4f-4bda-9f60-8be481951970)
+![card3](https://github.com/user-attachments/assets/b231fbff-936f-4033-a51c-2a49111f4122)
+![card4](https://github.com/user-attachments/assets/1083d751-6abb-4311-abd5-e498cdbadfac)
+![card5](https://github.com/user-attachments/assets/39071acc-096a-4630-8612-50a0dba7f3e5)
+![card6](https://github.com/user-attachments/assets/cd1d0530-9127-4e76-8d30-2f0ca90d67e5)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Contribute
+Found a bug or want a feature?  
+Open an **issue** or submit a **PR**!  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
+MIT © [@anmaiden](https://github.com/anmaiden)
