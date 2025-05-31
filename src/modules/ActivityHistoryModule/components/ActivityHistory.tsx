@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Grid,
-  Link,
   Paper,
   Table,
   TableBody,
@@ -26,7 +25,10 @@ const ActivityHistory = observer(() => {
   const [sortConfig, setSortConfig] = useState<{
     key: string;
     direction: 'asc' | 'desc';
-  } | null>(null);
+  } | null>({
+    key: 'date',
+    direction: 'desc',
+  });
 
   const sortedData = React.useMemo(() => {
     if (!sortConfig) return workoutData;
@@ -45,6 +47,11 @@ const ActivityHistory = observer(() => {
       }
 
       if (typeof aValue === 'string' && typeof bValue === 'string') {
+        if (sortConfig.key === 'date') {
+          const dateA = new Date(aValue).getTime();
+          const dateB = new Date(bValue).getTime();
+          return sortConfig.direction === 'asc' ? dateA - dateB : dateB - dateA;
+        }
         return sortConfig.direction === 'asc'
           ? aValue.localeCompare(bValue)
           : bValue.localeCompare(aValue);
@@ -83,12 +90,18 @@ const ActivityHistory = observer(() => {
             <TableRow>
               <TableCell onClick={() => requestSort('date')}>
                 Workout Date
+                {sortConfig?.key === 'date' &&
+                  (sortConfig.direction === 'asc' ? ' ↑' : ' ↓')}
               </TableCell>
               <TableCell onClick={() => requestSort('dayNumber')}>
                 Day Number
+                {sortConfig?.key === 'dayNumber' &&
+                  (sortConfig.direction === 'asc' ? ' ↑' : ' ↓')}
               </TableCell>
               <TableCell onClick={() => requestSort('calories')}>
                 Calories Burned
+                {sortConfig?.key === 'calories' &&
+                  (sortConfig.direction === 'asc' ? ' ↑' : ' ↓')}
               </TableCell>
               <TableCell>Playlist</TableCell>
               <TableCell>Note</TableCell>
