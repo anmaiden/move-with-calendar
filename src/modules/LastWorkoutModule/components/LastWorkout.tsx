@@ -1,5 +1,5 @@
 import React from 'react';
-import { format } from 'date-fns';
+import { format, differenceInDays } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import calendarStore from '../../CurrentMonthCalendarModule/store/CurrentMonthCalendarStore';
 import { Box, Grid, IconButton, Tooltip, Typography } from '@mui/material';
@@ -13,31 +13,52 @@ const LastWorkout = observer(() => {
     navigate('/current-month-calendar');
   };
   const savedWorkouts = calendarStore.savedData.savedData;
-  const lastWorkout =
-    savedWorkouts.length > 0 ? savedWorkouts[savedWorkouts.length - 1] : null;
+
+  const getClosestWorkout = () => {
+    if (savedWorkouts.length === 0) return null;
+
+    const now = new Date();
+    let closestWorkout = null;
+    let smallestDiff = Infinity;
+
+    savedWorkouts.forEach((workout) => {
+      const workoutDate = new Date(workout.date);
+      const diff = differenceInDays(now, workoutDate);
+
+      if (diff >= 0 && diff < smallestDiff) {
+        smallestDiff = diff;
+        closestWorkout = workout;
+      }
+    });
+
+    return closestWorkout || savedWorkouts[savedWorkouts.length - 1];
+  };
+
+  const closestWorkout = getClosestWorkout();
 
   return (
     <Grid size={{ xs: 12 }}>
       <Box display="flex" alignItems="center" mb={2}>
         <CalendarTodayIcon color="primary" sx={{ mr: 1 }} />
         <Typography variant="h6" component="div">
-          Last Workout
+          {closestWorkout ? 'Last Workout' : 'No Workouts'}
         </Typography>
       </Box>
 
-      {lastWorkout ? (
+      {closestWorkout ? (
         <>
           <Typography variant="body1" gutterBottom>
-            <strong>Date:</strong> {format(new Date(lastWorkout.date), 'PPP')}
+            <strong>Date:</strong>{' '}
+            {format(new Date(closestWorkout.date), 'PPP')}
           </Typography>
           <Typography variant="body1" gutterBottom>
-            <strong>Playlist:</strong> {lastWorkout.videoPlaylist}
+            <strong>Playlist:</strong> {closestWorkout.videoPlaylist}
           </Typography>
           <Typography variant="body1" gutterBottom>
-            <strong>Calories burned:</strong> {lastWorkout.calories || 'N/A'}
+            <strong>Calories burned:</strong> {closestWorkout.calories || 'N/A'}
           </Typography>
           <Typography variant="body1">
-            <strong>Note:</strong> {lastWorkout.note || 'No notes'}
+            <strong>Note:</strong> {closestWorkout.note || 'No notes'}
           </Typography>
         </>
       ) : (
