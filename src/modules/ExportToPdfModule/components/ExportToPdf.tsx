@@ -6,6 +6,7 @@ import autoTable from 'jspdf-autotable';
 import calendarStore from '../../CurrentMonthCalendarModule/store/CurrentMonthCalendarStore';
 import { PictureAsPdfRounded } from '@mui/icons-material';
 import { formatDate } from '../../../utils/helper';
+import { useTranslation } from 'react-i18next';
 
 interface ExportToPDFButtonProps {
   className?: string;
@@ -13,6 +14,8 @@ interface ExportToPDFButtonProps {
 
 const ExportToPDF: React.FC<ExportToPDFButtonProps> = observer(
   ({ className }) => {
+    const { t } = useTranslation();
+
     const handleExport = () => {
       const doc = new jsPDF();
 
@@ -64,7 +67,7 @@ const ExportToPDF: React.FC<ExportToPDFButtonProps> = observer(
     };
 
     return (
-      <Tooltip title={'Export to PDF'}>
+      <Tooltip title={t('activity.export')}>
         <Button
           variant="contained"
           size={'small'}
@@ -73,7 +76,7 @@ const ExportToPDF: React.FC<ExportToPDFButtonProps> = observer(
           className={className}
           disabled={calendarStore.savedData.savedData.length === 0}
         >
-          Export
+          {t('activity.export')}
         </Button>
       </Tooltip>
     );

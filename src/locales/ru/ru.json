@@ -1,0 +1,66 @@
+{
+  "mainPage": {
+    "mainTitle": "Добро пожаловать! Давайте двигаться с"
+  },
+
+  "mainMenu": {
+    "addWorkout": "Добавить тренировку",
+    "expandPlaylists": "Плейлисты MoveWith",
+    "myStatistics": "Моя статистика"
+  },
+
+  "settings": {
+    "title": "Настройки приложения",
+    "language": "Язык",
+    "theme": "Тема",
+    "english": "Английский",
+    "light": "Светлая"
+  },
+
+  "workout": {
+    "title": "Последняя тренировка",
+    "playlist": "Плейлист",
+    "calories": "Сожжено ккал",
+    "note": "Комментарий",
+    "date": "Дата",
+    "day": "День",
+    "withoutNote": "Нет комментария",
+    "add": "Добавить тренировку",
+    "noWorkoutsRecorded": "Тренировка не найдена. Хотите добавить?"
+  },
+  "profile": {
+    "title": "Профиль пользователя",
+    "weight": "Вес",
+    "height": "Рост",
+    "labelName": "Ваше имя",
+    "saveBtn": "Сохранить",
+    "notSpecified": "Не указано",
+    "noNameProvided": "Вы еще не вводили свое имя",
+    "editNotification": "Профиль обновлен"
+  },
+
+  "activity": {
+    "total": "Всего тренировок",
+    "export": "Экспорт в PDF",
+    "goToPlaylist": "Перейти"
+  },
+
+  "calendar": {
+    "title": "Нажмите на дату, чтобы записать тренировку",
+    "delWorkout": "Удалить данные о тренировке",
+    "addWorkout": "Добавить тренировку",
+    "editWorkout": "Редактировать тренировку",
+    "noteFor": "Запись о тренировке",
+    "addedNotification": "Вы добавили тренировку",
+    "delNotification": "Вы удалили тренировку"
+  },
+
+  "actions": {
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "close": "Закрыть",
+    "back": "Назад"
+  }
+}

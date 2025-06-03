@@ -15,11 +15,13 @@ import { observer } from 'mobx-react-lite';
 import ExportToPDF from '../../ExportToPdfModule/components/ExportToPdf';
 import { formatDate } from '../../../utils/helper';
 import { cn } from '@bem-react/classname';
+import { useTranslation } from 'react-i18next';
 
 const cnActivityHistory = cn('ActivityHistory');
 
 const ActivityHistory = observer(() => {
   const workoutData = calendarStore.savedData.savedData;
+  const { t } = useTranslation();
   const totalWorkouts = calendarStore.savedData.savedData.length;
 
   const [sortConfig, setSortConfig] = useState<{
@@ -75,7 +77,7 @@ const ActivityHistory = observer(() => {
         <ExportToPDF />
       </Grid>
       <Grid className={cnActivityHistory('TotalText')}>
-        Total workouts: {totalWorkouts}
+        {t('activity.total')}: {totalWorkouts}
       </Grid>
 
       <TableContainer
@@ -89,22 +91,22 @@ const ActivityHistory = observer(() => {
           <TableHead className={cnActivityHistory('TableHead')}>
             <TableRow>
               <TableCell onClick={() => requestSort('date')}>
-                Workout Date
+                {t('workout.date')}
                 {sortConfig?.key === 'date' &&
                   (sortConfig.direction === 'asc' ? ' ↑' : ' ↓')}
               </TableCell>
               <TableCell onClick={() => requestSort('dayNumber')}>
-                Day Number
+                {t('workout.day')}
                 {sortConfig?.key === 'dayNumber' &&
                   (sortConfig.direction === 'asc' ? ' ↑' : ' ↓')}
               </TableCell>
               <TableCell onClick={() => requestSort('calories')}>
-                Calories Burned
+                {t('workout.calories')}
                 {sortConfig?.key === 'calories' &&
                   (sortConfig.direction === 'asc' ? ' ↑' : ' ↓')}
               </TableCell>
-              <TableCell>Playlist</TableCell>
-              <TableCell>Note</TableCell>
+              <TableCell>{t('workout.playlist')}</TableCell>
+              <TableCell>{t('workout.note')}</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

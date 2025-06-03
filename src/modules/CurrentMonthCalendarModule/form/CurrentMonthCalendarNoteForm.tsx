@@ -18,6 +18,7 @@ import {
 } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import workoutYouTubeStore from '../../WorkoutYouTubeModule/store/WorkoutYouTubeStore';
+import { useTranslation } from 'react-i18next';
 
 interface CurrentMonthCalendarNoteFormProps {
   date: Date;
@@ -26,6 +27,8 @@ interface CurrentMonthCalendarNoteFormProps {
 
 const CurrentMonthCalendarNoteForm = observer(
   (props: CurrentMonthCalendarNoteFormProps) => {
+    const { t } = useTranslation();
+
     const existingWorkout = CalendarStore.getWorkoutByDate(
       props.date.toISOString()
     );
@@ -49,7 +52,7 @@ const CurrentMonthCalendarNoteForm = observer(
         };
 
         CalendarStore.addOrUpdateWorkout(workoutToSave);
-        enqueueSnackbar('You added workout', {
+        enqueueSnackbar(t('calendar.addedNotification'), {
           variant: 'success',
           autoHideDuration: 3000,
           anchorOrigin: {
@@ -65,11 +68,11 @@ const CurrentMonthCalendarNoteForm = observer(
       <Dialog open={true} onClose={props.onClose} maxWidth="sm" fullWidth>
         <DialogContent>
           <Typography variant="h6" gutterBottom>
-            Note for {props.date.toLocaleDateString()}
+            {t('calendar.noteFor')}: {props.date.toLocaleDateString()}
           </Typography>
           <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 2 }}>
             <FormControl fullWidth sx={{ mb: 3 }}>
-              <InputLabel id="video-label">Workout Video/Playlist</InputLabel>
+              <InputLabel id="video-label">{t('workout.playlist')}</InputLabel>
               <Select
                 labelId="video-label"
                 id="videoPlaylist"
@@ -78,10 +81,10 @@ const CurrentMonthCalendarNoteForm = observer(
                 onChange={(e) =>
                   formik.setFieldValue('videoPlaylist', e.target.value)
                 }
-                label="Workout Video/Playlist"
+                label={t('workout.playlist')}
               >
                 <MenuItem value="-">
-                  <em>None</em>
+                  <em>---</em>
                 </MenuItem>
                 {workoutYouTubeStore.playlists.map((playlist) => (
                   <MenuItem key={playlist.id} value={playlist.title}>
@@ -92,7 +95,7 @@ const CurrentMonthCalendarNoteForm = observer(
             </FormControl>
 
             <FormControl fullWidth sx={{ mb: 3 }}>
-              <InputLabel id="dayNumber-label">Day Number</InputLabel>
+              <InputLabel id="dayNumber-label">{t('workout.day')}</InputLabel>
               <Select
                 labelId="dayNumber-label"
                 id="dayNumber"
@@ -101,11 +104,11 @@ const CurrentMonthCalendarNoteForm = observer(
                 onChange={(event) =>
                   formik.setFieldValue('dayNumber', Number(event.target.value))
                 }
-                label="Day Number"
+                label={t('workout.day')}
               >
                 {[1, 2, 3, 4, 5, 6].map((num) => (
                   <MenuItem key={num} value={num}>
-                    Day {num}
+                    {t('workout.day')} {num}
                   </MenuItem>
                 ))}
               </Select>
@@ -119,7 +122,7 @@ const CurrentMonthCalendarNoteForm = observer(
               fullWidth
               id="calories"
               name="calories"
-              label="calories burn"
+              label={t('workout.calories')}
               value={formik.values.calories}
               onChange={formik.handleChange}
               sx={{ mb: 3 }}
@@ -128,7 +131,7 @@ const CurrentMonthCalendarNoteForm = observer(
               fullWidth
               id="note"
               name="note"
-              label="note"
+              label={t('workout.note')}
               value={formik.values.note}
               onChange={formik.handleChange}
               sx={{ mb: 3 }}
@@ -140,10 +143,10 @@ const CurrentMonthCalendarNoteForm = observer(
             )}
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
               <Button onClick={props.onClose} variant="outlined">
-                Cancel
+                {t('actions.cancel')}
               </Button>
               <Button type="submit" variant="contained" color="primary">
-                Save note
+                {t('actions.save')}
               </Button>
             </Box>
           </Box>

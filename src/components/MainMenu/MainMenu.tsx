@@ -6,11 +6,13 @@ import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import { cn } from '@bem-react/classname';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const cnMainMenu = cn('MainMenu');
 
 const MainMenu = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleCurrentMonthClick = () => {
     navigate('/current-month-calendar');
@@ -27,7 +29,7 @@ const MainMenu = () => {
   return (
     <Grid container className={cnMainMenu()}>
       <Grid size={4} className={cnMainMenu('Item')}>
-        <Tooltip title={'Add workout'}>
+        <Tooltip title={t('mainMenu.addWorkout')}>
           <IconButton
             loadingIndicator={<CircularProgress color="inherit" size={12} />}
             size={'small'}
@@ -39,7 +41,7 @@ const MainMenu = () => {
         </Tooltip>
       </Grid>
       <Grid size={4} className={cnMainMenu('Item')}>
-        <Tooltip title={'Expand MoveWith playlists'}>
+        <Tooltip title={t('mainMenu.expandPlaylists')}>
           <IconButton
             loadingIndicator={<CircularProgress color="inherit" size={12} />}
             size={'small'}
@@ -51,7 +53,7 @@ const MainMenu = () => {
         </Tooltip>
       </Grid>
       <Grid size={4} className={cnMainMenu('Item')}>
-        <Tooltip title={'My statistics'}>
+        <Tooltip title={t('mainMenu.myStatistics')}>
           <IconButton
             loadingIndicator={<CircularProgress color="inherit" size={12} />}
             size={'small'}

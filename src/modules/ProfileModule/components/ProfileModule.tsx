@@ -8,13 +8,16 @@ import {
   Grid,
   TextField,
   Typography,
+  Tooltip,
 } from '@mui/material';
 import Person2Icon from '@mui/icons-material/Person2';
 import { profileStore } from '../store/ProfileStore';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 const ProfileModule = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
 
   const [isEditing, setIsEditing] = useState(false);
   const [editData, setEditData] = useState(profileStore.profileData);
@@ -32,7 +35,7 @@ const ProfileModule = () => {
   const handleSave = () => {
     profileStore.saveProfile(editData);
     setIsEditing(false);
-    enqueueSnackbar('Profile updated', {
+    enqueueSnackbar(t('profile.editNotification'), {
       variant: 'success',
       autoHideDuration: 3000,
       anchorOrigin: {
@@ -46,19 +49,22 @@ const ProfileModule = () => {
     setEditData(profileStore.profileData);
     setIsEditing(true);
   };
+
   return (
     <Grid size={{ xs: 12 }}>
       <Box display="flex" alignItems="center" mb={2}>
         <Person2Icon color="primary" sx={{ mr: 1 }} />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Your Profile
+          {t('profile.title')}
         </Typography>
         {!isEditing && (
-          <EditIcon
-            color="action"
-            onClick={handleEditStart}
-            sx={{ cursor: 'pointer' }}
-          />
+          <Tooltip title={t('actions.edit')}>
+            <EditIcon
+              color="action"
+              onClick={handleEditStart}
+              sx={{ cursor: 'pointer' }}
+            />
+          </Tooltip>
         )}
       </Box>
 
@@ -71,7 +77,7 @@ const ProfileModule = () => {
                 variant="outlined"
                 value={editData.name}
                 onChange={handleInputChange('name')}
-                label="Your name"
+                label={t('profile.labelName')}
                 size="small"
                 margin="dense"
               />
@@ -82,7 +88,7 @@ const ProfileModule = () => {
                 variant="outlined"
                 value={editData.height}
                 onChange={handleInputChange('height')}
-                label="Height (cm)"
+                label={`${t('profile.height')} (cm)`}
                 type="number"
                 size="small"
                 margin="dense"
@@ -94,7 +100,7 @@ const ProfileModule = () => {
                 variant="outlined"
                 value={editData.weight}
                 onChange={handleInputChange('weight')}
-                label="Weight (kg)"
+                label={`${t('profile.weight')} (kg)`}
                 type="number"
                 size="small"
                 margin="dense"
@@ -108,14 +114,14 @@ const ProfileModule = () => {
               onClick={handleSave}
               startIcon={<SaveIcon />}
             >
-              Save
+              {t('profile.saveBtn')}
             </Button>
           </Box>
         </Box>
       ) : (
         <Box>
           <Typography variant="h4" gutterBottom>
-            {profileStore.profileData.name || 'No name provided'}
+            {profileStore.profileData.name || t('profile.noNameProvided')}
           </Typography>
 
           <Divider sx={{ my: 2 }} />
@@ -123,22 +129,22 @@ const ProfileModule = () => {
           <Grid container spacing={1}>
             <Grid size={{ xs: 6 }}>
               <Typography variant="body2" color="text.secondary">
-                Height
+                {t('profile.height')}
               </Typography>
               <Typography variant="body1">
                 {profileStore.profileData.height
                   ? `${profileStore.profileData.height} cm`
-                  : 'Not specified'}
+                  : t('profile.notSpecified', 'Not specified')}
               </Typography>
             </Grid>
             <Grid size={{ xs: 6 }}>
               <Typography variant="body2" color="text.secondary">
-                Weight
+                {t('profile.weight')}
               </Typography>
               <Typography variant="body1">
                 {profileStore.profileData.weight
                   ? `${profileStore.profileData.weight} kg`
-                  : 'Not specified'}
+                  : t('profile.notSpecified', 'Not specified')}
               </Typography>
             </Grid>
           </Grid>

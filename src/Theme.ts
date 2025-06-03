@@ -25,7 +25,6 @@ const Theme = createTheme({
           textTransform: 'none',
           padding: '12px 14px',
           fontWeight: 'bold',
-          fontFamily: '"Lobster", serif',
         },
       },
       variants: [
