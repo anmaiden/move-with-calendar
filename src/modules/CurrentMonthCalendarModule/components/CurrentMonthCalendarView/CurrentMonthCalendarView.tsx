@@ -8,19 +8,36 @@ import { observer } from 'mobx-react-lite';
 import CurrentMonthCalendarNoteForm from '../../form/CurrentMonthCalendarNoteForm';
 import Theme from '../../../../Theme';
 import { DayWithNote } from '../../../../components/CustomDay/CustomDay';
+import { useTranslation } from 'react-i18next';
+import { enUS, ru } from 'date-fns/locale';
+import { profileStore } from '../../../ProfileModule/store/ProfileStore';
 
 const cnCurrentMonthCalendarView = cn('CurrentMonthCalendarView');
 
 const CurrentMonthCalendarView = observer(() => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const { t } = useTranslation();
+
+  const getDateFnsLocale = () => {
+    switch (profileStore.profileData.lang) {
+      case 'ru':
+        return ru;
+      case 'en':
+      default:
+        return enUS;
+    }
+  };
 
   return (
     <Box className={cnCurrentMonthCalendarView()}>
       <Typography className={cnCurrentMonthCalendarView('Title')}>
-        Click on a date to create a workout note
+        {t('calendar.title')}
       </Typography>
 
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <LocalizationProvider
+        dateAdapter={AdapterDateFns}
+        adapterLocale={getDateFnsLocale()}
+      >
         <DateCalendar
           className={cnCurrentMonthCalendarView('DateCalendar')}
           onChange={(date) => setSelectedDate(date)}

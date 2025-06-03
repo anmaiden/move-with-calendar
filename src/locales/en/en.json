@@ -1,0 +1,67 @@
+{
+  "mainPage": {
+    "mainTitle": "Welcome! Lets move with"
+  },
+
+  "mainMenu": {
+    "addWorkout": "Add workout",
+    "expandPlaylists": "Expand MoveWith playlists",
+    "myStatistics": "My statistics"
+  },
+
+  "settings": {
+    "title": "App settings",
+    "language": "App Language",
+    "theme": "App Theme",
+    "english": "English",
+    "light": "Light"
+  },
+
+  "workout": {
+    "title": "Last Workout",
+    "playlist": "Playlist",
+    "calories": "Calories burned",
+    "note": "Note",
+    "date": "Date",
+    "day": "Day",
+    "withoutNote": "No notes",
+    "add": "Add workout",
+    "noWorkoutsRecorded": "No workouts recorded yet"
+  },
+
+  "profile": {
+    "title": "Your Profile",
+    "weight": "Weight",
+    "height": "Height",
+    "labelName": "Your name",
+    "saveBtn": "Save",
+    "notSpecified": "Not specified",
+    "noNameProvided": "No name provided",
+    "editNotification": "Profile updated"
+  },
+
+  "activity": {
+    "total": "Total workouts",
+    "export": "Export to PDF",
+    "goToPlaylist": "Go to playlist"
+  },
+
+  "calendar": {
+    "title": "Click on a date to create a workout note",
+    "delWorkout": "Delete workout for this day",
+    "addWorkout": "Add workout",
+    "editWorkout": "Edit workout",
+    "noteFor": "Workout for",
+    "addedNotification": "You added workout",
+    "delNotification": "You delete workout"
+  },
+
+  "actions": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "close": "Close",
+    "back": "Back"
+  }
+}
