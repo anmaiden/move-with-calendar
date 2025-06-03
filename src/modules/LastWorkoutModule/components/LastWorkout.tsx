@@ -1,14 +1,17 @@
 import React from 'react';
-import { format, differenceInDays } from 'date-fns';
+import { differenceInDays } from 'date-fns';
 import { observer } from 'mobx-react-lite';
 import calendarStore from '../../CurrentMonthCalendarModule/store/CurrentMonthCalendarStore';
 import { Box, Grid, IconButton, Tooltip, Typography } from '@mui/material';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { useNavigate } from 'react-router-dom';
 import { AddCircle } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
+import { formatDate } from '../../../utils/helper';
 
 const LastWorkout = observer(() => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const handleAddClick = () => {
     navigate('/current-month-calendar');
   };
@@ -41,30 +44,38 @@ const LastWorkout = observer(() => {
       <Box display="flex" alignItems="center" mb={2}>
         <CalendarTodayIcon color="primary" sx={{ mr: 1 }} />
         <Typography variant="h6" component="div">
-          {closestWorkout ? 'Last Workout' : 'No Workouts'}
+          {t('workout.title')}
         </Typography>
       </Box>
 
       {closestWorkout ? (
         <>
           <Typography variant="body1" gutterBottom>
-            <strong>Date:</strong>{' '}
-            {format(new Date(closestWorkout.date), 'PPP')}
+            <strong>{t('workout.date')}:</strong>{' '}
+            {formatDate(closestWorkout.date)}
           </Typography>
           <Typography variant="body1" gutterBottom>
-            <strong>Playlist:</strong> {closestWorkout.videoPlaylist}
+            <strong>{t('workout.playlist')}:</strong>{' '}
+            {closestWorkout.videoPlaylist}
           </Typography>
           <Typography variant="body1" gutterBottom>
-            <strong>Calories burned:</strong> {closestWorkout.calories || 'N/A'}
+            <strong>{t('workout.day')}:</strong> {closestWorkout.dayNumber}
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            <strong>{t('workout.calories')}:</strong>{' '}
+            {closestWorkout.calories || '-'}
           </Typography>
           <Typography variant="body1">
-            <strong>Note:</strong> {closestWorkout.note || 'No notes'}
+            <strong>{t('workout.note')}:</strong>{' '}
+            {closestWorkout.note || t('workout.withoutNote')}
           </Typography>
         </>
       ) : (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Typography variant="body1">No workouts recorded yet</Typography>
-          <Tooltip title={'Add workout'}>
+          <Typography variant="body1">
+            {t('workout.noWorkoutsRecorded', 'No workouts recorded yet')}
+          </Typography>
+          <Tooltip title={t('workout.add')}>
             <IconButton onClick={handleAddClick} size="small" color="primary">
               <AddCircle />
             </IconButton>

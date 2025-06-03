@@ -10,6 +10,7 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const cnPlaylistCardComponent = cn('PlaylistCardComponent');
 
@@ -20,6 +21,8 @@ interface PlaylistCardComponentProps {
 }
 
 const PlaylistCardComponent = (props: PlaylistCardComponentProps) => {
+  const { t } = useTranslation();
+
   return (
     <Grid container>
       <Card sx={{ maxWidth: 290 }} className={cnPlaylistCardComponent('Card')}>
@@ -41,7 +44,7 @@ const PlaylistCardComponent = (props: PlaylistCardComponentProps) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Go to playlist
+            {t('activity.goToPlaylist')}
           </Button>
         </CardActions>
       </Card>

@@ -6,6 +6,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CalendarStore from '../../modules/CurrentMonthCalendarModule/store/CurrentMonthCalendarStore';
 import { observer } from 'mobx-react-lite';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 const CustomDay = styled(PickersDay)<PickersDayProps & { hasNote?: boolean }>(
   ({ theme, hasNote }) => ({
@@ -24,25 +25,26 @@ const CustomDay = styled(PickersDay)<PickersDayProps & { hasNote?: boolean }>(
 );
 
 export const DayWithNote = observer((props: PickersDayProps) => {
+  const { t } = useTranslation();
   const hasNote = CalendarStore.hasWorkoutForDate(props.day.toISOString());
   const { enqueueSnackbar } = useSnackbar();
   return (
     <>
       <Tooltip
-        title={hasNote ? 'Edit note for this day' : 'Add workout note'}
+        title={hasNote ? t('calendar.editWorkout') : t('calendar.addWorkout')}
         leaveDelay={100}
       >
         <CustomDay {...props} hasNote={hasNote}>
           {props.day.getDate()}
           {hasNote && (
-            <Tooltip title="Delete note" leaveDelay={100}>
+            <Tooltip title={t('calendar.delWorkout')} leaveDelay={100}>
               <IconButton
                 size="small"
                 className="remove-button"
                 onClick={(e) => {
                   e.stopPropagation();
                   CalendarStore.removeWorkoutByDate(props.day.toISOString());
-                  enqueueSnackbar('Workout removed', {
+                  enqueueSnackbar(t('calendar.delNotification'), {
                     variant: 'warning',
                     autoHideDuration: 3000,
                     anchorOrigin: {

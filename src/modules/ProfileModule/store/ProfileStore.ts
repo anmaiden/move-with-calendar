@@ -6,6 +6,7 @@ export class ProfileStore {
     name: '',
     height: '',
     weight: '',
+    lang: 'en',
   };
 
   constructor() {
@@ -22,11 +23,20 @@ export class ProfileStore {
         console.error('Failed to parse user profile', e);
       }
     }
+
+    if (!this.profileData.lang) {
+      this.profileData.lang = 'en';
+    }
   }
 
   saveProfile(profile: UserProfileData) {
     this.profileData = profile;
     localStorage.setItem('userProfile', JSON.stringify(profile));
+  }
+
+  setLanguage(lang: string) {
+    this.profileData.lang = lang;
+    localStorage.setItem('userProfile', JSON.stringify(this.profileData));
   }
 
   get userName() {
